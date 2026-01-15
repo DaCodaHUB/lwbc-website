@@ -1,4 +1,4 @@
-import data from "../../../data/sermons_youtube.json";
+import data from "../../data/sermons_youtube.json";;
 export const prerender = true;
 
 export function GET() {

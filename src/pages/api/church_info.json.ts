@@ -1,4 +1,4 @@
-import data from "../../../data/church_info.json";
+import data from "../../data/church_info.json";
 export const prerender = true;
 
 export function GET() {

@@ -1,4 +1,4 @@
-import data from "../../../data/reading_plan.json";
+import data from "../../data/reading_plan.json";
 export const prerender = true;
 
 export function GET() {

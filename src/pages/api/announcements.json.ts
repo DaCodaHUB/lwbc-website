@@ -1,4 +1,4 @@
-import data from "../../../data/announcements.json";
+import data from "../../data/announcements.json";
 export const prerender = true;
 
 export function GET() {

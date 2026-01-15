@@ -1,0 +1,40 @@
+# ======================
+# Node / Package managers
+# ======================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ======================
+# Astro
+# ======================
+.astro/
+dist/
+
+# ======================
+# Environment variables
+# ======================
+.env
+.env.*
+!.env.example
+
+# ======================
+# IDE / Editors
+# ======================
+.idea/
+.vscode/
+*.iml
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# Temporary / cache
+# ======================
+.cache/
+.tmp/

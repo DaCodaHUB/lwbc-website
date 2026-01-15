@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://yourchurch.org",
-  output: "static"
+  site: "https://dacodahub.github.io",
+  base: "/lwbc-website",
+  output: "static",
 });
