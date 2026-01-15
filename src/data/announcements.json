@@ -112,31 +112,11 @@
                 "subitems": [
                   {
                     "label": "8:45am–9:45am",
-                    "text": "Lớp Tráng Niên",
-                    "meta": [
-                      {
-                        "label": "ZM",
-                        "value": "861 5205 1498"
-                      },
-                      {
-                        "label": "Passcode",
-                        "value": "2023"
-                      }
-                    ]
+                    "text": "Lớp Tráng Niên"
                   },
                   {
                     "label": "9:00am–9:45am",
-                    "text": "Lớp Thanh Tráng Niên",
-                    "meta": [
-                      {
-                        "label": "ZM",
-                        "value": "826 2484 7941"
-                      },
-                      {
-                        "label": "Passcode",
-                        "value": "1234"
-                      }
-                    ]
+                    "text": "Lớp Thanh Tráng Niên"
                   },
                   {
                     "label": "10:00am–11:45am",
@@ -149,17 +129,7 @@
                 "subitems": [
                   {
                     "label": "7:30pm–8:30pm",
-                    "text": "Học Kinh Thánh tại nhà thờ",
-                    "meta": [
-                      {
-                        "label": "Zoom",
-                        "value": "847 3521 6858"
-                      },
-                      {
-                        "label": "Password",
-                        "value": "012345"
-                      }
-                    ]
+                    "text": "Học Kinh Thánh tại nhà thờ"
                   }
                 ]
               }
