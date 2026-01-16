@@ -15,7 +15,7 @@ const church = churchInfo.church;
   <body>
     <div class="navbar">
       <div class="nav-inner">
-        <a class="brand" href={Astro.site?.pathname ?? "/"}>
+        <a class="brand" href={"/lwbc-website"}>
           <strong>{church?.name ?? "Church"}</strong>
           <span>{church?.tagline ?? ""}</span>
         </a>
@@ -38,9 +38,6 @@ const church = churchInfo.church;
             {church?.address?.line1}, {church?.address?.city}, {church?.address?.state} {church?.address?.zip}
             • <a href={"mailto:" + church?.contact?.email}>{church?.contact?.email}</a>
             • <a href={"tel:" + church?.contact?.phone}>{church?.contact?.phone}</a>
-          </div>
-          <div style="margin-top:10px">
-            <span class="pill">Future-ready: JSON feeds at <code>/api/*.json</code> for a mobile app</span>
           </div>
         </div>
       </footer>

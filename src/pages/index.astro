@@ -56,13 +56,13 @@ const latestVideo = (sermonsData.videos ?? [])
             {announcements.map((a) => (
               <li>
                 {a.pinned ? <span class="pill" style="margin-right:8px">Pinned</span> : null}
-                <a href="/announcements">{a.title}</a>
+                <a href="/lwbc-website/announcements">{a.title}</a>
                 <div class="muted" style="font-size:.9rem">{a.category} • {formatDateShort(a.publishedAt)}</div>
               </li>
             ))}
           </ul>
         )}
-        <div style="margin-top:10px"><a class="button" href="/announcements">View all</a></div>
+        <div style="margin-top:10px"><a class="button" href="/lwbc-website/announcements">View all</a></div>
       </div>
 
       <div class="card">
@@ -82,7 +82,7 @@ const latestVideo = (sermonsData.videos ?? [])
                 allowfullscreen
               ></iframe>
             </div>
-            <div style="margin-top:10px"><a class="button" href="/services">See all videos</a></div>
+            <div style="margin-top:10px"><a class="button" href="/lwbc-website/services">See all videos</a></div>
           </>
         ) : (
           <p class="muted">No videos yet.</p>
