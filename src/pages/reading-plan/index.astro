@@ -12,10 +12,11 @@ const items = (plan.items ?? []).slice().sort((a, b) => (a.date ?? "").localeCom
 
   <p class="muted">
     <span class="lang-vi">{plan.planTitle}</span>
-    <span class="lang-en">{plan.planTitle ?? plan.planTitle_vi}</span>
+    <span class="lang-en">{plan.planTitle_en ?? plan.planTitle}</span>
   </p>
 
   <div class="card" style="margin-top:14px">
+    <div class="table-wrap">
     <table class="table">
       <thead>
         <tr>
@@ -38,31 +39,21 @@ const items = (plan.items ?? []).slice().sort((a, b) => (a.date ?? "").localeCom
           <tr>
             <td>{it.dayNumber}</td>
             <td>
-              <span class="lang-vi">{it.displayDate_vi ?? it.date}</span>
-              <span class="lang-en">{it.displayDate ?? it.date}</span>
+              <span class="lang-vi">{it.displayDate ?? it.date}</span>
+              <span class="lang-en">{it.displayDate_en ?? it.date}</span>
             </td>
             <td>
-              <span class="lang-vi">{it.reading_vi}</span>
-              <span class="lang-en">{it.reading ?? it.reading_vi}</span>
+              <span class="lang-vi">{it.reading}</span>
+              <span class="lang-en">{it.reading_en ?? it.reading}</span>
             </td>
             <td>
-              <span class="lang-vi">{it.reading_1_vi}</span>
-              <span class="lang-en">{it.reading_1 ?? it.reading_1_vi}</span>
+              <span class="lang-vi">{it.psalm}</span>
+              <span class="lang-en">{it.psalm_en ?? it.psalm}</span>
             </td>
           </tr>
         ))}
       </tbody>
     </table>
   </div>
-
-  <div class="card" style="margin-top:16px">
-    <h2>
-      <span class="lang-vi">Hỗ trợ app mobile</span>
-      <span class="lang-en">Mobile app support</span>
-    </h2>
-    <p class="muted">
-      <span class="lang-vi">Dữ liệu lịch đọc cũng được phục vụ tại <code>/api/reading_plan.json</code> để dùng chung cho app.</span>
-      <span class="lang-en">This schedule is also served at <code>/api/reading_plan.json</code> so a future mobile app can use the same data.</span>
-    </p>
   </div>
 </BaseLayout>

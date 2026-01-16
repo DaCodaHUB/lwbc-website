@@ -92,7 +92,8 @@ function renderBilingualText(vi, en) {
 
                           {Array.isArray(it.meta) && it.meta.length ? (
                             <div style="margin-top:10px; overflow:auto">
-                              <table class="table">
+                              <div class="table-wrap">
+      <table class="table">
                                 <tbody>
                                   {it.meta.map((m) => (
                                     <tr>
@@ -102,6 +103,7 @@ function renderBilingualText(vi, en) {
                                   ))}
                                 </tbody>
                               </table>
+    </div>
                             </div>
                           ) : null}
                         </li>

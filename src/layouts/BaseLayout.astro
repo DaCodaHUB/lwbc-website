@@ -19,7 +19,8 @@ const church = churchInfo.church;
           <strong>{church?.name ?? "Church"}</strong>
           <span>{church?.tagline ?? ""}</span>
         </a>
-        <nav class="navlinks">
+        <button id="menuToggle" class="menubtn" type="button" aria-label="Menu" aria-controls="navLinks" aria-expanded="false">☰</button>
+          <nav class="navlinks" id="navLinks">
           <button id="langToggle" class="langbtn" type="button" aria-label="Toggle language">EN</button>
           <a href="/lwbc-website"><span class="lang-vi">Trang Chủ</span><span class="lang-en">Home</span></a>
           <a href="/lwbc-website/announcements"><span class="lang-vi">Thông Báo</span><span class="lang-en">Announcements</span></a>
@@ -66,5 +67,27 @@ const church = churchInfo.church;
     }
   })();
 </script>
-  </body>
+  <script>
+  (function () {
+    const btn = document.getElementById("menuToggle");
+    const nav = document.getElementById("navLinks");
+    if (!btn || !nav) return;
+
+    function setOpen(open) {
+      nav.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    btn.addEventListener("click", () => {
+      const open = nav.classList.contains("is-open");
+      setOpen(!open);
+    });
+
+    // Close menu after selecting a link (mobile)
+    nav.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => setOpen(false));
+    });
+  })();
+</script>
+</body>
 </html>
