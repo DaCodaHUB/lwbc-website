@@ -5,12 +5,10 @@
     "name": "Living Water Baptist Church",
     "tagline": "Gospel centered, community focused in Jesus",
     "address": {
-      "line1": "123 Main St",
+      "line1": "4600 SE 97th Ave",
       "city": "Portland",
       "state": "OR",
-      "zip": "97201",
-      "lat": 45.5152,
-      "lng": -122.6784
+      "zip": "97266"
     },
     "serviceTimes": [
       {

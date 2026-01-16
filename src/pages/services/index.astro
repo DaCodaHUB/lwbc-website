@@ -18,7 +18,6 @@ const videos = (sermonsData.videos ?? []).slice().sort((a, b) => (b.date ?? "").
             <div class="muted" style="margin-bottom:10px">
               {formatDateShort(v.date)} • {v.speaker}{v.series ? ` • ${v.series}` : ""}
             </div>
-            <div class="pill">YouTube ID: <code>{v.youtubeVideoId}</code></div>
           </div>
           <div style="position:relative; padding-top:56.25%; border-radius:14px; overflow:hidden; border:1px solid var(--border)">
             <iframe

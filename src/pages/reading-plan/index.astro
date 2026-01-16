@@ -11,8 +11,8 @@ const items = (plan.items ?? []).slice().sort((a, b) => (a.date ?? "").localeCom
   </h1>
 
   <p class="muted">
-    <span class="lang-vi">{plan.planTitle}</span>
-    <span class="lang-en">{plan.planTitle_en ?? plan.planTitle}</span>
+    <span class="lang-vi">{plan.planTitle_vi}</span>
+    <span class="lang-en">{plan.planTitle}</span>
   </p>
 
   <div class="card" style="margin-top:14px">
@@ -39,16 +39,16 @@ const items = (plan.items ?? []).slice().sort((a, b) => (a.date ?? "").localeCom
           <tr>
             <td>{it.dayNumber}</td>
             <td>
-              <span class="lang-vi">{it.displayDate ?? it.date}</span>
-              <span class="lang-en">{it.displayDate_en ?? it.date}</span>
+              <span class="lang-vi">{it.displayDate_vi ?? it.date}</span>
+              <span class="lang-en">{it.displayDate ?? it.date}</span>
             </td>
             <td>
-              <span class="lang-vi">{it.reading}</span>
-              <span class="lang-en">{it.reading_en ?? it.reading}</span>
+              <span class="lang-vi">{it.reading_vi}</span>
+              <span class="lang-en">{it.reading}</span>
             </td>
             <td>
-              <span class="lang-vi">{it.psalm}</span>
-              <span class="lang-en">{it.psalm_en ?? it.psalm}</span>
+              <span class="lang-vi">{it.reading_1_vi}</span>
+              <span class="lang-en">{it.reading_1}</span>
             </td>
           </tr>
         ))}
