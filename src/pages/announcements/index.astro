@@ -1,123 +1,90 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import announcementsData from "../../data/announcements.json";
-import { marked } from "marked";
+import data from "../../data/announcements.json";
 
-const announcements = (announcementsData.announcements ?? []).slice().sort((a, b) => {
-  if (!!a.pinned !== !!b.pinned) return a.pinned ? -1 : 1;
-  return (b.publishedAt ?? "").localeCompare(a.publishedAt ?? "");
-});
-
-function safe(s) {
-  return String(s ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function pickBilingual(obj, viKey, enKey) {
-  const v = obj?.[viKey];
-
-  // Supports nested object: {vi,en}
-  if (v && typeof v === "object") {
-    const vi = v.vi ?? "";
-    const en = v.en ?? vi;
-    return { vi, en };
-  }
-
-  const vi = obj?.[viKey] ?? "";
-  const en = obj?.[enKey] ?? obj?.[viKey + "_en"] ?? vi;
-  return { vi, en };
-}
-
-function renderBilingualText(vi, en) {
-  return `<span class="lang-vi">${safe(vi)}</span><span class="lang-en">${safe(en)}</span>`;
-}
+const sections = data.announcements ?? [];
 ---
-<BaseLayout title="Announcements / Thông Báo">
+
+<BaseLayout title="Announcements / Thông báo">
   <h1>
-    <span class="lang-vi">Thông Báo</span>
+    <span class="lang-vi">Thông báo</span>
     <span class="lang-en">Announcements</span>
   </h1>
+
   <p class="muted">
     <span class="lang-vi">Cập nhật cho Hội Thánh.</span>
     <span class="lang-en">Updates for the church family.</span>
   </p>
 
   <div class="grid" style="margin-top:14px">
-    {announcements.map((a) => (
-      <article class="card">
-        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px">
-          <div>
-            <h2 style="margin-bottom:4px">
-              <span class="lang-vi">{pickBilingual(a, "title", "title_en").vi}</span>
-              <span class="lang-en">{pickBilingual(a, "title", "title_en").en}</span>
-            </h2>
-            <div class="muted" style="font-size:.92rem">
-              {a.pinned ? <span class="pill" style="margin-right:8px">Pinned</span> : null}
-              {a.category} • {a.publishedAt?.slice?.(0, 10) ?? a.publishedAt}
-            </div>
-          </div>
-        </div>
+    {sections.map((sec) => (
+      <section class="card">
+        <h2 style="margin-bottom:10px">
+          <span class="lang-vi">{sec.heading_vi}</span>
+          <span class="lang-en">{sec.heading_en}</span>
+        </h2>
 
-        {/* Bulletin format (supports updated JSON: heading/headingEn + meta[] without Zoom rows) */}
-        {a.format === "bulletin" && a.bulletin?.sections ? (
-          <div style="margin-top:14px" class="grid">
-            {a.bulletin.sections.map((sec) => {
-              const h = pickBilingual(sec, "heading", "headingEn");
-              return (
-                <section class="card" style="padding:14px">
-                  <h3 style="margin:0 0 10px; font-size:1.05rem" set:html={renderBilingualText(h.vi, h.en)} />
+        {sec.items?.length ? (
+          <ul style="margin:0; padding-left:18px">
+            {sec.items.map((it) => (
+              <li style="margin-bottom:12px">
+                <div>
+                  <strong>
+                    <span class="lang-vi">{it.text_vi}</span>
+                    <span class="lang-en">{it.text_en}</span>
+                  </strong>
+                </div>
 
-                  {sec.items?.length ? (
-                    <ul style="margin:0; padding-left:18px">
-                      {sec.items.map((it) => (
-                        <li style="margin-bottom:10px">
-                          <span set:html={renderBilingualText(it.text, it.textEn ?? it.text_en ?? it.text)} />
-                          {it.details ? <span class="muted"> — {it.details}</span> : null}
+                {(it.details_vi || it.details_en) ? (
+                  <div class="muted" style="margin-top:2px">
+                    <span class="lang-vi">{it.details_vi}</span>
+                    <span class="lang-en">{it.details_en}</span>
+                  </div>
+                ) : null}
 
-                          {it.subitems?.length ? (
-                            <ul style="margin-top:6px; padding-left:18px">
-                              {it.subitems.map((sub) => (
-                                <li>
-                                  {sub.label ? <strong>{sub.label}:</strong> : null}{" "}
-                                  {sub.text ? <span>{sub.text}</span> : null}
-                                  {sub.details ? <span class="muted"> — {sub.details}</span> : null}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : null}
+                {it.subitems?.length ? (
+                  <ul style="margin-top:8px; padding-left:18px">
+                    {it.subitems.map((sub) => (
+                      <li style="margin-bottom:6px">
+                        <span class="pill" style="margin-right:8px">
+                          <span class="lang-vi">{sub.label_vi}</span>
+                          <span class="lang-en">{sub.label_en}</span>
+                        </span>
+                        <span>
+                          <span class="lang-vi">{sub.text_vi}</span>
+                          <span class="lang-en">{sub.text_en}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
 
-                          {Array.isArray(it.meta) && it.meta.length ? (
-                            <div style="margin-top:10px; overflow:auto">
-                              <div class="table-wrap">
-      <table class="table">
-                                <tbody>
-                                  {it.meta.map((m) => (
-                                    <tr>
-                                      <td style="width:220px"><strong>{m.label}</strong></td>
-                                      <td>{m.value}</td>
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
-    </div>
-                            </div>
-                          ) : null}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </section>
-              );
-            })}
-          </div>
+                {it.meta?.length ? (
+                  <div class="table-wrap" style="margin-top:10px">
+                    <table class="table">
+                      <tbody>
+                        {it.meta.map((m) => (
+                          <tr>
+                            <td style="width:220px">
+                              <strong>
+                                <span class="lang-vi">{m.label_vi}</span>
+                                <span class="lang-en">{m.label_en}</span>
+                              </strong>
+                            </td>
+                            <td>{m.value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : null}
+              </li>
+            ))}
+          </ul>
         ) : (
-          <div style="margin-top:12px" set:html={marked.parse(a.bodyMarkdown ?? "")} />
+          <p class="muted">—</p>
         )}
-      </article>
+      </section>
     ))}
   </div>
 </BaseLayout>
